@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cổng Tài Lộc — Binance & AlgosOne</title>
+<meta name="description" content="Globe 3D xanh, nền xanh phong thủy, nút vàng đậm phát sáng, CTA kép, ticker giả lập, spin, counter, countdown, copy/share, song ngữ Việt–Anh.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#031a12">
+
+<style>
+  /* === Palette: nền xanh toàn trang + nút vàng đậm === */
+  :root{
+    --bg:#031a12; --bg2:#01120c; --card:#0b1713;
+    --text:#f6fbff; --muted:#a8bdd0;
+    --green:#10b981; --cyan:#23d6c5;
+    --gold:#ffbf1a; --gold-border:#e0a400;
+    --ring:0 0 0 1px rgba(16,185,129,.45), 0 0 80px rgba(35,214,197,.18), inset 0 1px 0 rgba(255,255,255,.05);
+    --radius:16px; --shadow:0 16px 60px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 12% -8%, rgba(35,214,197,.22), transparent 60%),
+      radial-gradient(1200px 700px at 100% 12%, rgba(53,193,255,.20), transparent 60%),
+      linear-gradient(180deg, var(--bg2) 0%, #042219 35%, #05271d 70%, #062b20 100%);
+    color:var(--text);
+    font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Helvetica,Arial;
+    line-height:1.6;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:22px 16px 120px}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;border-radius:var(--radius);padding:20px 14px 18px;
+        background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));
+        border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);overflow:hidden;text-align:center}
+  .hero:before{content:"";position:absolute;inset:-1px;border-radius:inherit;box-shadow:var(--ring);pointer-events:none}
+  .hero-title{
+    font-size:clamp(28px,5.2vw,48px);line-height:1.06;margin:14px 0 10px;
+    background-image:linear-gradient(90deg,#fff,#ffe5a2,#fff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 2px 12px rgba(255,231,140,.30), 0 1px 0 rgba(0,0,0,.65);
+    animation:shimmer 12s linear infinite;
+  }
+  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+  .sub{
+    color:#cfe7f8; text-shadow:0 1px 0 rgba(0,0,0,.55);
+    max-width:78ch;margin:0 auto 14px;
+  }
+
+  .langbar{position:absolute;top:10px;right:10px;display:flex;gap:8px}
+  .langbtn{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#eef;cursor:pointer;font-weight:800}
+  .langbtn.active{border-color:var(--gold);box-shadow:0 0 0 1px rgba(255,210,77,.45)}
+
+  /* ===== CTA ===== */
+  .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px}
+  .btn--gold{
+    appearance:none;border:1px solid var(--gold-border);cursor:pointer;text-decoration:none;font-weight:900;letter-spacing:.2px;
+    padding:18px 22px;border-radius:16px;
+    transition:.18s transform,.18s box-shadow,.18s background,.18s border-color,.2s filter;
+    color:#1a1400;
+    background:linear-gradient(180deg,#ffe889 0%,#ffc930 58%,#ffb40a 100%);
+    box-shadow:
+      0 12px 28px rgba(255,191,26,.42),
+      0 0 0 1px rgba(224,164,0,.34) inset,
+      0 2px 0 rgba(0,0,0,.25) inset,
+      0 0 24px rgba(255,200,60,.25);
+  }
+  .btn--gold:hover{
+    transform:translateY(-1px); filter:saturate(1.05);
+    box-shadow:
+      0 18px 46px rgba(255,191,26,.58),
+      0 0 0 1px rgba(224,164,0,.40) inset,
+      0 2px 0 rgba(0,0,0,.25) inset,
+      0 0 34px rgba(255,210,80,.32);
+  }
+  .btn--green{
+    appearance:none;border:1px solid rgba(16,185,129,.55);cursor:pointer;font-weight:800;
+    padding:12px 14px;border-radius:12px;color:#def;background:linear-gradient(180deg,rgba(16,185,129,.24),rgba(9,90,60,.24))
+  }
+  .btn--green.ok{background:linear-gradient(180deg,rgba(16,185,129,.38),rgba(9,90,60,.34));color:#083}
+
+  /* ===== GLOBE 3D (Three.js) ===== */
+  .globe-wrap{display:flex;justify-content:center;margin-top:8px}
+  #globe3d{
+    width:min(320px,60vw); aspect-ratio:1/1; border-radius:50%;
+    margin-inline:auto; overflow:hidden; position:relative;
+    box-shadow:0 22px 60px rgba(0,0,0,.7), inset 0 0 34px rgba(0,0,0,.45);
+    background:radial-gradient(circle at 50% 60%, rgba(0,0,0,.4), transparent 60%);
+  }
+  #globe3d:after{ /* halo xanh */
+    content:""; position:absolute; inset:-12%; border-radius:50%;
+    box-shadow:0 0 170px rgba(46,230,200,.34), 0 0 100px rgba(120,200,255,.26) inset;
+    pointer-events:none;
+  }
+
+  /* ===== Ticker ===== */
+  .ticker{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:16px 0 12px}
+  .tick{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.22);
+        background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35));font-weight:800}
+  .sym{font-family:ui-monospace,Menlo,monospace;padding:2px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.24)}
+  .price{min-width:84px;text-align:right}
+  .chg.up{color:#47ff9f}.chg.down{color:#ff7979}
+  .flash{animation:flash .28s ease}
+  @keyframes flash{from{filter:brightness(2)}to{filter:brightness(1)}}
+
+  /* ===== Reasons ===== */
+  .reasons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 2px;padding:0;list-style:none}
+  .reasons li{
+    padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.30);
+    background:linear-gradient(180deg,rgba(1,50,38,.62),rgba(1,32,24,.52));
+    font-weight:800;color:#ecf7ff
+  }
+
+  /* ===== GRID ===== */
+  .grid{display:grid;gap:16px;margin-top:16px}
+  @media(min-width:960px){.grid{grid-template-columns:1fr 1fr}}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border-radius:var(--radius);padding:18px;border:1px solid rgba(255,255,255,.14);box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .card:before{content:"";position:absolute;inset:-1px;border-radius:inherit;box-shadow:var(--ring);pointer-events:none}
+  .sect-title{font-size:20px;margin:0 0 8px}
+  .pill{display:inline-block;padding:4px 8px;border:1px solid rgba(255,255,255,.24);border-radius:8px;color:var(--muted);font-size:12px}
+  ul{padding-left:18px;margin:8px 0} li{margin:6px 0}
+
+  /* ===== Spin-to-Join ===== */
+  .spin{display:flex;gap:10px;align-items:center;justify-content:center;margin:14px 0 2px}
+  .wheel{width:140px;height:140px;border-radius:50%;border:6px solid rgba(255,210,77,.7);
+         background:conic-gradient(#10b981 0 60deg,#08d0ff 60deg 180deg,#ffbf1a 180deg 300deg,#10b981 300deg 360deg);
+         box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 0 30px rgba(255,255,255,.12);position:relative}
+  .pin{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid #ffbf1a;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+  .wheel.spin{animation:turn 2.2s cubic-bezier(.2,.8,.2,1) forwards}
+  @keyframes turn{to{transform:rotate(1220deg)}}
+
+  /* ===== Sticky CTA ===== */
+  .sticky{position:fixed;left:0;right:0;bottom:0;padding:max(10px,env(safe-area-inset-bottom));
+          background:linear-gradient(180deg,transparent,rgba(0,0,0,.65) 30%,rgba(0,0,0,.85) 100%);
+          display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);z-index:50}
+  .sticky a{justify-self:stretch}
+  @media(min-width:960px){.sticky{display:none}}
+
+  /* ===== Chips ===== */
+  .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:13px;justify-content:center}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.32)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero" aria-label="Cổng tài lộc">
+    <div class="langbar" role="group" aria-label="Language switch">
+      <button class="langbtn active" id="viBtn">VI</button>
+      <button class="langbtn" id="enBtn">EN</button>
+    </div>
+
+    <!-- Globe 3D xanh -->
+    <div class="globe-wrap"><div id="globe3d" aria-hidden="true"></div></div>
+
+    <!-- Headline/Sub -->
+    <h1 class="hero-title" data-i18n="hero_title">Chạm nút vàng — mở tài khoản miễn phí ngay</h1>
+    <p class="sub" data-i18n="hero_sub">Người mới cũng làm được: chọn Binance hoặc AlgosOne, liên kết chính thức, thao tác nhanh, hỗ trợ Tiếng Việt &amp; English.</p>
+
+    <!-- Lý do -->
+    <ul class="reasons">
+      <li data-i18n="r1">Miễn phí 100% mở tài khoản</li>
+      <li data-i18n="r2">Nhanh ≈ 30 giây • VI/EN</li>
+      <li data-i18n="r3">Liên kết chính thức • An toàn</li>
+    </ul>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-live="polite">
+      <div class="tick"><span class="sym">BTC</span><span class="price" data-sym="BTC">62315</span><span class="chg up" data-chg="BTC">+0.8%</span></div>
+      <div class="tick"><span class="sym">ETH</span><span class="price" data-sym="ETH">2476</span><span class="chg down" data-chg="ETH">-0.4%</span></div>
+      <div class="tick"><span class="sym">USDT</span><span class="price" data-sym="USDT">1.000</span><span class="chg up" data-chg="USDT">+0.0%</span></div>
+    </div>
+
+    <!-- CTA vàng -->
+    <div class="cta">
+      <a data-link="bn" class="btn--gold" target="_blank" rel="noopener" aria-label="Mở tài khoản Binance miễn phí" data-i18n="cta_bn">Mở tài khoản miễn phí tại đây</a>
+      <button class="btn--green" data-copy="BN" data-i18n="copy_bn">Sao chép link Binance</button>
+      <a data-link="ao" class="btn--gold" target="_blank" rel="noopener" aria-label="Mở tài khoản AlgosOne miễn phí" data-i18n="cta_ao">Mở tài khoản miễn phí tại đây</a>
+      <button class="btn--green" data-copy="AO" data-i18n="copy_ao">Sao chép link AlgosOne</button>
+      <button class="btn--green" id="shareBtn" data-i18n="share">Chia sẻ</button>
+    </div>
+
+    <!-- Spin-to-Join -->
+    <div class="spin">
+      <div class="wheel" id="wheel"><div class="pin"></div></div>
+      <button class="btn--green" id="spinBtn" data-i18n="spin">Quay mở lộc</button>
+    </div>
+
+    <!-- FOMO/Stats -->
+    <div class="stats">
+      <span class="chip">🔥 <span id="liveCount">128</span> <span data-i18n="joined">người hoàn tất đăng ký hôm nay</span></span>
+      <span class="chip">⏳ <span data-i18n="ends">Cơ hội hôm nay còn</span>: <span id="countdown">00:00:00</span></span>
+      <span class="chip">🏆 <span data-i18n="trending">Đang thịnh hành</span></span>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="grid" aria-label="Tính năng">
+    <!-- BNB -->
+    <article class="card">
+      <h2 class="sect-title" data-i18n="b_title">Binance (BNB)</h2>
+      <span class="pill" data-i18n="b_pill">Mua bán • Tích luỹ • Earn • Giảm phí</span>
+      <ul>
+        <li data-i18n="b_li1"><b>Mua bán dễ dàng:</b> Spot, Margin, <b>Futures</b>, Options — từ cơ bản tới nâng cao.</li>
+        <li data-i18n="b_li2"><b>Tích luỹ dài hạn:</b> Auto-Invest (DCA) &amp; Simple Earn — như “sổ tiết kiệm vàng số”, có lãi khi nắm giữ.</li>
+        <li data-i18n="b_li3"><b>Khám phá cơ hội mới:</b> Launchpool/Launchpad — tham gia để nhận token mới theo chương trình.</li>
+        <li data-i18n="b_li4"><b>VND ↔ Crypto thuận tiện:</b> Fiat/P2P on-ramp, thanh khoản sâu.</li>
+        <li data-i18n="b_li5"><b>Tiết kiệm phí:</b> dùng <b>BNB</b> thanh toán để nhận mức giảm tương ứng.</li>
+        <li data-i18n="b_li6"><b>An toàn &amp; minh bạch:</b> KYC, 2FA, Proof-of-Reserves, hỗ trợ toàn cầu.</li>
+        <li data-i18n="b_li7"><b>Ứng dụng mạnh:</b> biểu đồ TradingView, lệnh nâng cao, app mượt.</li>
+      </ul>
+      <div class="cta">
+        <a data-link="bn" class="btn--gold" target="_blank" rel="noopener" data-i18n="cta_bn">Mở tài khoản miễn phí tại đây</a>
+        <button class="btn--green" data-copy="BN" data-i18n="copy_bn">Sao chép link Binance</button>
+      </div>
+    </article>
+
+    <!-- AlgosOne -->
+    <article class="card">
+      <h2 class="sect-title" data-i18n="a_title">AlgosOne</h2>
+      <span class="pill" data-i18n="a_pill">AI Trading • Copy Strategy • 3 bước</span>
+      <ul>
+        <li data-i18n="a_li1"><b>AI &amp; thuật toán:</b> gợi ý theo dữ liệu, tránh cảm tính, hỗ trợ người mới.</li>
+        <li data-i18n="a_li2"><b>Tự động hoá giao dịch:</b> cài đặt entry/exit/SL/TP &amp; quản trị rủi ro 24/7.</li>
+        <li data-i18n="a_li3"><b>Copy Strategy minh bạch:</b> xem lịch sử hiệu suất và sao chép chiến lược phù hợp (tự đánh giá rủi ro).</li>
+        <li data-i18n="a_li4"><b>Đa chiến lược • đa tài sản:</b> linh hoạt theo mục tiêu &amp; khẩu vị rủi ro.</li>
+        <li data-i18n="a_li5"><b>Dashboard trực quan:</b> theo dõi tín hiệu &amp; trạng thái lệnh thời gian thực.</li>
+        <li data-i18n="a_li6"><b>3 bước đơn giản:</b> Mở tài khoản → Chọn mức rủi ro → Bấm kích hoạt — AI chạy thay bạn.</li>
+      </ul>
+      <div class="cta">
+        <a data-link="ao" class="btn--gold" target="_blank" rel="noopener" data-i18n="cta_ao">Mở tài khoản miễn phí tại đây</a>
+        <button class="btn--green" data-copy="AO" data-i18n="copy_ao">Sao chép link AlgosOne</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- Footer -->
+  <footer style="margin-top:14px;color:var(--muted);font-size:13px;text-align:center">
+    © <span id="y"></span> — <span data-i18n="foot">Cổng tài lộc 3D. Đăng ký miễn phí ngay, mở ra cơ hội tích lũy tài sản số cho bạn.</span>
+  </footer>
+</div>
+
+<!-- Sticky CTA -->
+<div class="sticky" role="navigation">
+  <a data-link="bn" class="btn--gold" target="_blank" rel="noopener" data-i18n="cta_bn">Mở tài khoản miễn phí tại đây</a>
+  <a data-link="ao" class="btn--gold" target="_blank" rel="noopener" data-i18n="cta_ao">Mở tài khoản miễn phí tại đây</a>
+</div>
+
+<!-- ==== Three.js Globe (module) ==== -->
+<script type="module">
+  import * as THREE from 'https://unpkg.com/three@0.157.0/build/three.module.js';
+
+  const cont = document.getElementById('globe3d');
+  let w = cont.clientWidth, h = cont.clientHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, w/h, 0.1, 1000);
+  camera.position.set(0, 0, 2.6);
+
+  const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+  renderer.setSize(w, h); renderer.setPixelRatio(Math.min(2, window.devicePixelRatio||1));
+  cont.appendChild(renderer.domElement);
+
+  // Lights — sáng & có rim xanh ngọc
+  const amb = new THREE.AmbientLight(0xaee2ff, 1.05);
+  const dir = new THREE.DirectionalLight(0xffffff, 1.5); dir.position.set(5,2,3);
+  const rim = new THREE.PointLight(0x23d6c5, 0.65, 6); rim.position.set(-3,1.5,2.2);
+  scene.add(amb, dir, rim);
+
+  // Textures
+  const loader = new THREE.TextureLoader();
+  const earthTex = loader.load('https://unpkg.com/three-globe/example/img/earth-dark.jpg');
+  const bumpTex  = loader.load('https://unpkg.com/three-globe/example/img/earth-topology.png');
+  const cloudTex = loader.load('https://unpkg.com/three-globe/example/img/earth-clouds.png');
+
+  // Earth (tông xanh)
+  const geo = new THREE.SphereGeometry(1, 96, 96);
+  const mat = new THREE.MeshPhongMaterial({
+    map: earthTex, bumpMap: bumpTex, bumpScale: 0.02,
+    specular: new THREE.Color(0x333333), shininess: 8
+  });
+  mat.color = new THREE.Color(0x82d7ff);
+  mat.emissive = new THREE.Color(0x0b4a4a);
+  mat.emissiveIntensity = 0.38;
+  const earth = new THREE.Mesh(geo, mat); scene.add(earth);
+
+  // Clouds
+  const cgeo = new THREE.SphereGeometry(1.01, 96, 96);
+  const cmat = new THREE.MeshLambertMaterial({ map: cloudTex, transparent:true, opacity:0.50, depthWrite:false });
+  const clouds = new THREE.Mesh(cgeo, cmat); scene.add(clouds);
+
+  // Background sphere
+  const starGeo = new THREE.SphereGeometry(20, 64, 64);
+  const starMat = new THREE.MeshBasicMaterial({ color:0x071b14, side:THREE.BackSide });
+  scene.add(new THREE.Mesh(starGeo, starMat));
+
+  // Auto-rotate
+  function animate(){
+    requestAnimationFrame(animate);
+    earth.rotation.y += 0.0022;
+    clouds.rotation.y += 0.0016;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Resize
+  new ResizeObserver(entries=>{
+    for(const e of entries){
+      w = e.contentRect.width; h = e.contentRect.height;
+      renderer.setSize(w, h); camera.aspect = w/h; camera.updateProjectionMatrix();
+    }
+  }).observe(cont);
+</script>
+
+<script>
+  /* ===== Links + optional ?src= ===== */
+  const LINKS = {
+    BN: "https://www.binance.com/referral/earn-together/refer-in-hotsummer/claim?hl=vi&ref=GRO_20338_9V44N&utm_source=default",
+    AO: "https://algosone.page.link/MbtR"
+  };
+  const src = new URLSearchParams(location.search).get('src');
+  function withSrc(base){
+    if(!src) return base;
+    try{ const u = new URL(base); u.hash = (u.hash?u.hash+'&':'#') + 'src=' + encodeURIComponent(src); return u.toString(); }
+    catch(e){ return base; }
+  }
+  document.querySelectorAll('[data-link]').forEach(a=>{
+    const key = a.getAttribute('data-link').toUpperCase();
+    a.href = withSrc(key==='BN' ? LINKS.BN : LINKS.AO);
+  });
+
+  // Copy + ripple
+  function ripple(el){
+    const r=document.createElement('span');
+    r.style.position='absolute'; r.style.inset='0'; r.style.borderRadius='inherit';
+    r.style.boxShadow='0 0 0 0 rgba(255,191,26,.65)'; r.style.transition='box-shadow .35s ease'; r.style.pointerEvents='none';
+    el.style.position='relative'; el.appendChild(r);
+    requestAnimationFrame(()=>{ r.style.boxShadow='0 0 0 18px rgba(255,191,26,0)'; });
+    setTimeout(()=> r.remove(), 360);
+  }
+  function doCopy(text, el){
+    navigator.clipboard.writeText(text).then(()=>{
+      if(navigator.vibrate) navigator.vibrate(15); ripple(el);
+      const old = el.textContent; el.classList.add('ok'); el.textContent = dict[cur]['copied'];
+      setTimeout(()=>{ el.classList.remove('ok'); el.textContent = old; }, 1200);
+    }).catch(()=>alert('Copy failed'));
+  }
+  document.querySelectorAll('[data-copy]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ const k = btn.dataset.copy; doCopy(withSrc(LINKS[k]), btn); });
+  });
+
+  // Share
+  document.getElementById('shareBtn')?.addEventListener('click', async ()=>{
+    const text = dict[cur]['share_text'];
+    try{
+      if(navigator.share){ await navigator.share({title: document.title, text, url: location.href}); }
+      else{ doCopy(location.href, document.getElementById('shareBtn')); }
+    }catch(e){}
+  });
+
+  // Spin-to-Join
+  const wheel = document.getElementById('wheel'); const spinBtn = document.getElementById('spinBtn');
+  spinBtn.addEventListener('click', ()=>{
+    wheel.classList.remove('spin'); void wheel.offsetWidth; wheel.classList.add('spin');
+    setTimeout(()=>{ spinBtn.textContent = dict[cur]['spin_done']; spinBtn.classList.add('ok'); confetti(); }, 2200);
+  });
+
+  // Confetti
+  function confetti(){
+    const n = 28;
+    for(let i=0;i<n;i++){
+      const s = document.createElement('span'); s.textContent = '🟡';
+      s.style.position='fixed'; s.style.zIndex=60; s.style.left=Math.random()*100+'vw'; s.style.top='-20px';
+      s.style.fontSize=(12+Math.random()*16)+'px'; s.style.transition='transform 1.4s ease-in, opacity 1.4s ease-in';
+      document.body.appendChild(s);
+      setTimeout(()=>{ s.style.transform='translateY(110vh) rotate('+(Math.random()*360)+'deg)'; s.style.opacity=.85; }, 10);
+      setTimeout(()=> s.remove(), 1500);
+    }
+  }
+
+  // Counter
+  const countEl = document.getElementById('liveCount');
+  setInterval(()=>{ const v = parseInt(countEl.textContent.replace(/\D/g,'')) + Math.floor(Math.random()*3); countEl.textContent = v.toString(); }, 3000);
+
+  // Countdown
+  const countdownEl = document.getElementById('countdown');
+  function tick(){
+    const now = new Date(); const end = new Date(); end.setHours(23,59,59,999);
+    const d = Math.max(0, end-now);
+    const h = String(Math.floor(d/3.6e6)).padStart(2,'0');
+    const m = String(Math.floor((d%3.6e6)/6e4)).padStart(2,'0');
+    const s = String(Math.floor((d%6e4)/1000)).padStart(2,'0');
+    countdownEl.textContent = h+':'+m+':'+s;
+  }
+  setInterval(tick, 1000); tick();
+
+  // Ticker giả lập
+  const prices = { BTC: 62315, ETH: 2476, USDT: 1.000 };
+  const pct    = { BTC: 0.8,   ETH:-0.4,  USDT: 0.0 };
+  function fmt(n, sym){ if(sym==='USDT') return n.toFixed(3); if(sym==='ETH') return Math.max(0.01,n).toFixed(0); return Math.max(1,n).toFixed(0); }
+  function step(sym){
+    const dir = Math.random()>.5?1:-1, mag = sym==='USDT'? (Math.random()*0.0008) : (Math.random()*(sym==='ETH'?4:25));
+    prices[sym]+=dir*mag; pct[sym]+=(dir*(Math.random()*0.08))*(sym==='USDT'?0.1:1); pct[sym]=Math.max(-9.9,Math.min(9.9,pct[sym]));
+    const priceEl=document.querySelector('[data-sym="'+sym+'"]'), chgEl=document.querySelector('[data-chg="'+sym+'"]');
+    if(!priceEl||!chgEl) return; priceEl.textContent=fmt(prices[sym],sym);
+    const up=pct[sym]>=0; chgEl.className='chg '+(up?'up':'down')+' flash'; chgEl.textContent=(up?'+':'')+pct[sym].toFixed(1)+'%';
+    setTimeout(()=> chgEl.classList.remove('flash'), 280);
+  }
+  setInterval(()=>['BTC','ETH','USDT'].forEach(step), 1800);
+
+  // Sticky CTA: ẩn khi CTA hero trong khung nhìn
+  const heroCta = document.querySelector('.cta');
+  const sticky = document.querySelector('.sticky');
+  if(heroCta && sticky && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver(e=>{
+      sticky.style.display = e[0].isIntersecting ? 'none' : 'grid';
+    },{threshold:0.1});
+    io.observe(heroCta);
+  }
+
+  // Year
+  const y=document.getElementById('y'); if(y) y.textContent=new Date().getFullYear();
+
+  /* ===== Bilingual dict ===== */
+  const dict = {
+    vi: {
+      hero_title:"Chạm nút vàng — mở tài khoản miễn phí ngay",
+      hero_sub:"Người mới cũng làm được: chọn Binance hoặc AlgosOne, liên kết chính thức, thao tác nhanh, hỗ trợ Tiếng Việt & English.",
+      r1:"Miễn phí 100% mở tài khoản", r2:"Nhanh ≈ 30 giây • VI/EN", r3:"Liên kết chính thức • An toàn",
+      cta_bn:"Mở tài khoản miễn phí tại đây", cta_ao:"Mở tài khoản miễn phí tại đây",
+      copy_bn:"Sao chép link Binance", copy_ao:"Sao chép link AlgosOne",
+      share:"Chia sẻ", share_text:"Trang mở tài khoản Binance & AlgosOne (nút vàng, miễn phí)",
+      spin:"Quay mở lộc", spin_done:"Sẵn sàng — Bấm nút vàng!",
+      joined:"người hoàn tất đăng ký hôm nay", ends:"Cơ hội hôm nay còn", trending:"Đang thịnh hành",
+
+      b_title:"Binance (BNB)", b_pill:"Mua bán • Tích luỹ • Earn • Giảm phí",
+      b_li1:"<b>Mua bán dễ dàng:</b> Spot, Margin, <b>Futures</b>, Options — từ cơ bản tới nâng cao.",
+      b_li2:"<b>Tích luỹ dài hạn:</b> Auto-Invest (DCA) &amp; Simple Earn — như “sổ tiết kiệm vàng số”, có lãi khi nắm giữ.",
+      b_li3:"<b>Khám phá cơ hội mới:</b> Launchpool/Launchpad — tham gia để nhận token mới theo chương trình.",
+      b_li4:"<b>VND ↔ Crypto thuận tiện:</b> Fiat/P2P on-ramp, thanh khoản sâu.",
+      b_li5:"<b>Tiết kiệm phí:</b> dùng <b>BNB</b> thanh toán để nhận mức giảm tương ứng.",
+      b_li6:"<b>An toàn &amp; minh bạch:</b> KYC, 2FA, Proof-of-Reserves, hỗ trợ toàn cầu.",
+      b_li7:"<b>Ứng dụng mạnh:</b> biểu đồ TradingView, lệnh nâng cao, app mượt.",
+
+      a_title:"AlgosOne", a_pill:"AI Trading • Copy Strategy • 3 bước",
+      a_li1:"<b>AI &amp; thuật toán:</b> gợi ý theo dữ liệu, tránh cảm tính, hỗ trợ người mới.",
+      a_li2:"<b>Tự động hoá giao dịch:</b> cài đặt entry/exit/SL/TP &amp; quản trị rủi ro 24/7.",
+      a_li3:"<b>Copy Strategy minh bạch:</b> xem lịch sử hiệu suất và sao chép chiến lược phù hợp (tự đánh giá rủi ro).",
+      a_li4:"<b>Đa chiến lược • đa tài sản:</b> linh hoạt theo mục tiêu &amp; khẩu vị rủi ro.",
+      a_li5:"<b>Dashboard trực quan:</b> theo dõi tín hiệu &amp; trạng thái lệnh thời gian thực.",
+      a_li6:"<b>3 bước đơn giản:</b> Mở tài khoản → Chọn mức rủi ro → Bấm kích hoạt — AI chạy thay bạn.",
+
+      foot:"Cổng tài lộc 3D. Đăng ký miễn phí ngay, mở ra cơ hội tích lũy tài sản số cho bạn.",
+      copied:"Đã sao chép ✓"
+    },
+    en: {
+      hero_title:"Tap the gold button — open a free account now",
+      hero_sub:"Beginners welcome: choose Binance or AlgosOne, official links, fast flow, Vietnamese & English supported.",
+      r1:"100% free sign-up", r2:"Fast ≈ 30s • VI/EN", r3:"Official links • Secure",
+      cta_bn:"Open a free account here", cta_ao:"Open a free account here",
+      copy_bn:"Copy Binance Link", copy_ao:"Copy AlgosOne Link",
+      share:"Share", share_text:"Signup hub for Binance & AlgosOne (gold CTA, free)",
+      spin:"Spin to Join", spin_done:"Ready — tap the gold button!",
+      joined:"people completed sign-up today", ends:"Today ends in", trending:"Trending now",
+
+      b_title:"Binance (BNB)", b_pill:"Trade • Accumulate • Earn • Fee cuts",
+      b_li1:"<b>Easy trading:</b> Spot, Margin, <b>Futures</b>, Options — from basic to advanced.",
+      b_li2:"<b>Long-term accumulation:</b> Auto-Invest (DCA) &amp; Simple Earn — like a digital-gold savings plan.",
+      b_li3:"<b>New opportunities:</b> Launchpool/Launchpad — join campaigns to receive new tokens.",
+      b_li4:"<b>Local on/off-ramp:</b> Fiat/P2P for quick VND ↔ Crypto.",
+      b_li5:"<b>Save on fees:</b> pay with <b>BNB</b> for eligible discounts.",
+      b_li6:"<b>Security & transparency:</b> KYC, 2FA, Proof of Reserves, global support.",
+      b_li7:"<b>Powerful app:</b> TradingView charts, advanced orders.",
+
+      a_title:"AlgosOne", a_pill:"AI Trading • Copy Strategy • 3 steps",
+      a_li1:"<b>AI & algorithms:</b> data-driven suggestions to reduce bias.",
+      a_li2:"<b>Automation:</b> preset entry/exit/SL/TP & 24/7 risk controls.",
+      a_li3:"<b>Transparent Copy Strategy:</b> view performance history and copy suitable strategies (assess your own risk).",
+      a_li4:"<b>Multi-strategy • multi-asset:</b> flexible to your goals.",
+      a_li5:"<b>Intuitive dashboard:</b> live signals & position status.",
+      a_li6:"<b>3 simple steps:</b> Open account → Choose risk → Activate — let AI run for you.",
+
+      foot:"3D Wealth Gateway. Sign up free now and open your path to accumulating digital assets.",
+      copied:"Copied ✓"
+    }
+  };
+  let cur=(localStorage.getItem('lang')||(navigator.language||'vi').slice(0,2)).toLowerCase(); if(cur!=='en') cur='vi';
+  function applyLang(){
+    document.documentElement.lang=cur;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); const html=dict[cur][k]; if(html) el.innerHTML=html; });
+    document.getElementById('viBtn').classList.toggle('active',cur==='vi');
+    document.getElementById('enBtn').classList.toggle('active',cur==='en');
+    const y=document.getElementById('y'); if(y) y.textContent=new Date().getFullYear();
+  }
+  applyLang();
+  document.getElementById('viBtn').addEventListener('click', ()=>{cur='vi';localStorage.setItem('lang','vi');applyLang();});
+  document.getElementById('enBtn').addEventListener('click', ()=>{cur='en';localStorage.setItem('lang','en');applyLang();});
+</script>
+</body>
+</html>
