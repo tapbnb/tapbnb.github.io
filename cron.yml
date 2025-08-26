@@ -1,0 +1,36 @@
+name: Daily analyze (freeze 08:00) + live outcomes
+
+on:
+  schedule:
+    # Phân tích & đóng băng ~07:58 GMT+7 ⇒ 00:58 UTC
+    - cron: '58 0 * * *'
+    # Cập nhật kết quả mỗi 30' từ 08:00–24:00 GMT+7 ⇒ 01:00–17:00 UTC
+    - cron: '0,30 1-16 * * *'
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build JSON (analyze/freeze or results)
+        run: node scripts/build-json.mjs
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/predictions.json data/hist || true
+          git diff --cached --quiet || git commit -m "Auto: update $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git push
