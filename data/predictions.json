@@ -1,0 +1,19 @@
+{
+  "updated_at": "",
+  "mode": "—",
+  "predictions": {
+    "date": "",
+    "xsmb": {"best":"—","conf":0,"xien":[["—","—"],["—","—"]],"top10":[],"notes":""},
+    "mega":{"date":"—","sets":[]},
+    "power":{"date":"—","sets":[]},
+    "max3d":{"date":"—","sets":[]},
+    "l535":{"date":"","sets13":[],"sets21":[]}
+  },
+  "outcomes": {
+    "xsmb":{"date":"","twos":[],"source":"—"},
+    "mega":{"nums":[],"source":"—"},
+    "power":{"nums":[],"source":"—"},
+    "max3d":{"latest":[],"source":"—"},
+    "l535":{"k13":"—","k21":"—","source":"—"}
+  }
+}
