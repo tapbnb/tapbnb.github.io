@@ -2,131 +2,211 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Auto Predictor — FROZEN sau 08:00 (GMT+7)</title>
-<meta name="description" content="Tự động cron: 00–08h phân tích → FROZEN sau 08:00; 08–24h cập nhật kết quả. XSMB Best Lô + 2 xiên, Mega/Power/Max3D theo ngày quay, Lotto 5/35 (SB 01–12).">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Binance Beginner Guide – An toàn & trung lập (VI/EN)</title>
+<meta name="description" content="Hướng dẫn trung lập, song ngữ, mở tài khoản Binance an toàn cho người mới. Không hứa hẹn lợi nhuận.">
+<meta name="theme-color" content="#062b20">
+
+<!-- Open Graph / Share -->
+<meta property="og:title" content="Binance Beginner Guide – Safe & Neutral (VI/EN)">
+<meta property="og:description" content="Neutral, educational landing for new users. No earnings promises.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://i.imgur.com/9uJ9Z4y.png">
+
+<!-- Favicon tối giản -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%23062b20%22/><path d=%22M32 14l6 6-6 6-6-6 6-6zm-12 12l6 6-6 6-6-6 6-6zm24 0l6 6-6 6-6-6 6-6zm-12 12l6 6-6 6-6-6 6-6z%22 fill=%22%23ffbf1a%22/></svg>">
+
 <style>
-  :root{--bg:#0b1210;--card:#101a16;--text:#f6fbff;--muted:#a8c3b6;--acc:#00e6a8;--gold:#ffd95e;--red:#ff7f7f;--border:#163328;--pill:#0b1a15}
-  *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto;color:var(--text);background:linear-gradient(180deg,#07110d,#0b1210 55%,#0b1210)}
-  .wrap{max-width:1200px;margin:36px auto;padding:0 16px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 16px;box-shadow:0 10px 30px rgba(0,0,0,.35);margin-bottom:16px}
-  h1{margin:0 0 6px;font-size:26px} h2{margin:8px 0 4px;font-size:20px}
-  .muted{color:var(--muted);font-size:14px} .small{font-size:12px;opacity:.9}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .btn{cursor:pointer;border:1px solid #2a6b57;background:#0f2a22;color:#eafff7;border-radius:10px;padding:8px 12px}
-  .btn:hover{filter:brightness(1.07)}
-  .pill{display:inline-block;margin:6px 6px 0 0;padding:7px 12px;border-radius:999px;border:1px solid #1f5646;background:var(--pill)}
-  .box{background:#0d1814;border:1px dashed #1a3e33;border-radius:10px;padding:10px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-  table{width:100%;border-collapse:collapse} th,td{border:1px solid #1e3e33;padding:6px 8px;font-size:14px} th{background:#0d1814}
-  .tag{border:1px solid #335d50;background:#10241e;padding:6px 10px;border-radius:8px}
+  :root{
+    --bg:#031a12; --bg2:#05261d; --text:#f6fbff; --muted:#b9c9d6; --line:rgba(255,255,255,.16);
+    --gold:#ffbf1a; --gold2:#e0a400; --radius:16px; --shadow:0 14px 48px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+    background:linear-gradient(180deg,#01120c,#05261d 45%,#062b20);
+    color:var(--text); line-height:1.6;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:20px 16px 80px}
+  .langbar{display:flex;gap:8px;justify-content:flex-end}
+  .langbtn{padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.08);cursor:pointer;font-weight:800;color:var(--text)}
+  .langbtn.active{border-color:var(--gold);background:rgba(255,255,255,.15)}
+  .hero{margin-top:8px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);
+        background:rgba(255,255,255,.02);box-shadow:var(--shadow);text-align:center}
+  .title{font-size:clamp(26px,6vw,40px);margin:6px 0;background:linear-gradient(90deg,#fff,#ffe7a8,#fff);
+         -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:#d7e8f7;max-width:72ch;margin:0 auto 10px}
+  .badge{display:inline-block;margin:4px 6px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-weight:700;background:rgba(255,255,255,.06)}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0}
+  .btn{display:inline-block;cursor:pointer;text-decoration:none;font-weight:900;border-radius:16px;border:1px solid var(--gold2);
+       background:linear-gradient(180deg,#ffe889,#ffc930 58%,#ffb40a);color:#1a1400;box-shadow:0 12px 26px rgba(255,191,26,.45);padding:16px 22px}
+  .btn:hover{transform:translateY(-1px);filter:saturate(1.05)}
+  .btn.sec{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));color:#eef;border:1px solid var(--line);box-shadow:none}
+
+  .card{margin-top:14px;padding:16px;border:1px solid var(--line);border-radius:var(--radius);
+        background:rgba(255,255,255,.02);box-shadow:var(--shadow)}
+  h2{margin:0 0 8px;font-size:20px}
+  ul{margin:8px 0 0 18px} li{margin:6px 0}
+  .legal{font-size:12px;color:var(--muted)}
+  .grid{display:grid;gap:10px;margin-top:10px}
+  @media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted)}
+  .footer{text-align:center;margin-top:16px}
+  details{border:1px solid var(--line);border-radius:12px;padding:10px;background:rgba(255,255,255,.02);margin-top:10px}
+  summary{cursor:pointer;font-weight:800}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="card">
-    <h1>🧠 Auto Predictor — FROZEN sau 08:00 (GMT+7)</h1>
-    <div class="muted">Cron tự động: <b>00:00–08:00</b> phân tích đầy đủ ⇒ <b>đóng băng dự đoán</b> ~08:00. <b>08:00–24:00</b> chỉ cập nhật <i>kết quả</i>. Không cần can thiệp.</div>
-    <div class="row" style="margin-top:8px">
-      <button class="btn" id="refresh">↻ Nạp dữ liệu</button>
-      <span class="tag">Cập nhật JSON: <span id="updated">—</span></span>
-      <span class="tag">Chế độ: <span id="mode">—</span></span>
-      <span class="muted" id="status">Đang khởi động…</span>
-    </div>
+<main class="wrap">
+  <!-- Language -->
+  <div class="langbar" aria-label="Language">
+    <button id="viBtn" class="langbtn active">VI</button>
+    <button id="enBtn" class="langbtn">EN</button>
   </div>
 
-  <div class="card">
-    <h2>📊 XSMB — Dự đoán (FROZEN) & Kết quả</h2>
-    <div class="row">
-      <div class="box"><b>Best lô (ngày):</b> <span id="best-lo" class="pill">—</span> <span class="small">conf=<span id="best-lo-conf">—</span></span></div>
-      <div class="box"><b>Xiên 2 (2 cặp):</b> <span id="x1" class="pill">—</span> <span id="x2" class="pill">—</span></div>
-      <div class="box"><b>Dự đoán ngày:</b> <span id="pred-date" class="small">—</span></div>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="ttl">
+    <h1 id="ttl" class="title" data-i18n="title">Hướng dẫn mở tài khoản Binance – an toàn & trung lập</h1>
+    <p class="sub" data-i18n="sub">Trang hướng dẫn cho người mới bắt đầu. Không hứa hẹn lợi nhuận. Giao dịch tài sản số có rủi ro – hãy tự nghiên cứu (DYOR) và chỉ sử dụng số vốn có thể chấp nhận mất.</p>
+    <div>
+      <span class="badge" data-i18n="b1">Educational / Neutral</span>
+      <span class="badge" data-i18n="b2">No earnings promises</span>
+      <span class="badge" data-i18n="b3">VI / EN</span>
     </div>
-    <details style="margin-top:10px">
-      <summary>Top10 lô & ghi chú mô hình</summary>
-      <div id="xsmb-top"></div>
-      <div class="small" id="xsmb-notes" style="margin-top:8px;color:#ffd95e"></div>
-    </details>
-    <div class="box" style="margin-top:10px">
-      <b>Kết quả XSMB hôm nay:</b> <span id="xsmb-out" class="pill">—</span> <span class="small">(nguồn: <span id="xsmb-src">—</span>)</span>
-    </div>
-  </div>
 
-  <div class="card">
-    <h2>🔮 Vietlott — Dự đoán (FROZEN theo ngày quay) & Kết quả</h2>
+    <div class="cta">
+      <!-- CTA: ref của anh -->
+      <a id="goBtn" class="btn" href="https://accounts.binance.com/register?ref=59226778" target="_blank" rel="noopener noreferrer nofollow" data-i18n="cta_go">Mở Binance (Chính thức)</a>
+      <button id="copyBtn" class="btn sec" data-i18n="cta_copy">Sao chép link</button>
+    </div>
+
     <div class="grid">
-      <div class="box">
-        <b>Mega 6/45</b> <div class="small">Ngày quay: <span id="mega-date">—</span></div>
-        <table style="margin-top:6px"><thead><tr><th>Dự đoán</th><th>5 bộ</th></tr></thead><tbody id="mega-picks"></tbody></table>
-        <div class="small" style="margin-top:6px"><b>KQ gần nhất:</b> <span id="mega-out">—</span> <span>(nguồn: <span id="mega-src">—</span>)</span></div>
-      </div>
-      <div class="box">
-        <b>Power 6/55</b> <div class="small">Ngày quay: <span id="power-date">—</span></div>
-        <table style="margin-top:6px"><thead><tr><th>Dự đoán</th><th>5 bộ</th></tr></thead><tbody id="power-picks"></tbody></table>
-        <div class="small" style="margin-top:6px"><b>KQ gần nhất:</b> <span id="power-out">—</span> <span>(nguồn: <span id="power-src">—</span>)</span></div>
-      </div>
-      <div class="box">
-        <b>Max 3D</b> <div class="small">Ngày quay: <span id="max3d-date">—</span></div>
-        <table style="margin-top:6px"><thead><tr><th>Dự đoán</th><th>5 gợi ý</th></tr></thead><tbody id="max3d-picks"></tbody></table>
-        <div class="small" style="margin-top:6px"><b>KQ gần nhất:</b> <span id="max3d-out">—</span> <span>(nguồn: <span id="max3d-src">—</span>)</span></div>
-      </div>
-      <div class="box">
-        <b>Lotto 5/35</b> <div class="small">Kỳ 13:00 & 21:00 — có SB 01–12</div>
-        <table style="margin-top:6px"><thead><tr><th>Kỳ</th><th>5 bộ (5 số + SB)</th></tr></thead><tbody id="l535-picks"></tbody></table>
-        <div class="small" style="margin-top:6px">
-          <b>KQ 13:00:</b> <span id="l535-13">—</span> &nbsp; <b>21:00:</b> <span id="l535-21">—</span>
-          <span>(nguồn: <span id="l535-src">—</span>)</span>
-        </div>
-      </div>
+      <span class="chip">🔒 <span data-i18n="c1">Bật 2FA (Authenticator/SMS) sau khi tạo tài khoản</span></span>
+      <span class="chip">🪪 <span data-i18n="c2">Hoàn tất KYC để tăng hạn mức & bảo mật</span></span>
     </div>
-  </div>
-</div>
+  </section>
+
+  <!-- Quick guide -->
+  <section class="card" aria-labelledby="h1">
+    <h2 id="h1" data-i18n="h1">3 bước nhanh</h2>
+    <ul>
+      <li data-i18n="s1">Nhấn nút vàng → vào trang chính thức Binance.</li>
+      <li data-i18n="s2">Đăng ký bằng email/điện thoại → bật bảo mật 2FA.</li>
+      <li data-i18n="s3">Xác minh danh tính (KYC) → nạp/rút và sử dụng sản phẩm phù hợp (Spot, Earn, v.v.).</li>
+    </ul>
+  </section>
+
+  <!-- Safety tips -->
+  <section class="card" aria-labelledby="h2">
+    <h2 id="h2" data-i18n="h2">Lưu ý an toàn</h2>
+    <ul>
+      <li data-i18n="t1">Không chia sẻ mã 2FA hoặc mật khẩu cho bất kỳ ai.</li>
+      <li data-i18n="t2">Luôn kiểm tra URL thuộc tên miền <b>binance.com</b> trước khi đăng nhập.</li>
+      <li data-i18n="t3">Tránh hứa hẹn lợi nhuận – thị trường biến động mạnh.</li>
+    </ul>
+    <p class="legal" data-i18n="risk">Cảnh báo rủi ro: Tài sản số có biến động cao và có thể mất toàn bộ vốn. Bạn tự chịu trách nhiệm với các quyết định của mình.</p>
+  </section>
+
+  <!-- FAQ ngắn -->
+  <section class="card" aria-labelledby="h4">
+    <h2 id="h4" data-i18n="h4">Câu hỏi thường gặp</h2>
+    <details>
+      <summary data-i18n="q1">Tôi có cần phí để mở tài khoản không?</summary>
+      <p data-i18n="a1" class="legal">Không. Mở tài khoản là miễn phí. Phí chỉ phát sinh khi bạn sử dụng dịch vụ (ví dụ: giao dịch).</p>
+    </details>
+    <details>
+      <summary data-i18n="q2">Tôi có thể nạp rút bằng tiền pháp định?</summary>
+      <p data-i18n="a2" class="legal">Tùy khu vực và đối tác thanh toán của Binance. Hãy kiểm tra tùy chọn trong ứng dụng/tài khoản của bạn.</p>
+    </details>
+    <details>
+      <summary data-i18n="q3">Trang này có thuộc Binance không?</summary>
+      <p data-i18n="a3" class="legal">Không. Đây là trang hướng dẫn độc lập, trung lập. Thương hiệu thuộc về Binance và chủ sở hữu.</p>
+    </details>
+  </section>
+
+  <!-- Contact & Legal -->
+  <section class="card" aria-labelledby="h3">
+    <h2 id="h3" data-i18n="h3">Liên hệ & pháp lý</h2>
+    <p><b data-i18n="name">Người phụ trách:</b> Vũ Huy Phát • <b data-i18n="addr">Địa chỉ:</b> Phường Phong Thái, TP Huế • <b data-i18n="phone">Điện thoại:</b> <a href="tel:0567892030">0567892030</a> • Email: <a href="mailto:vumumabada@gmail.com">vumumabada@gmail.com</a></p>
+    <details>
+      <summary data-i18n="pp">Privacy Policy</summary>
+      <p class="legal" data-i18n="ppc">Chúng tôi không thu thập thanh toán trên trang này. Dữ liệu trình duyệt (như địa chỉ IP, user-agent) có thể được máy chủ/hosting ghi log theo mặc định để bảo mật. Khi bạn rời trang để truy cập Binance, mọi dữ liệu/đơn hàng tuân theo chính sách của Binance.</p>
+    </details>
+    <details>
+      <summary data-i18n="tc">Terms</summary>
+      <p class="legal" data-i18n="tcc">Trang này cung cấp nội dung hướng dẫn trung lập “as-is”, không đảm bảo kết quả, không phải lời khuyên tài chính/pháp lý/thuế. Bạn tự chịu trách nhiệm khi quyết định sử dụng nền tảng bên thứ ba (Binance).</p>
+    </details>
+  </section>
+
+  <footer class="footer legal">
+    © <span id="y"></span> • <span data-i18n="foot">Neutral onboarding page. Not financial advice. Trademarks belong to Binance and respective owners.</span>
+  </footer>
+</main>
 
 <script>
-async function loadJSON(){
-  const url='data/predictions.json?v='+Date.now();
-  const r=await fetch(url,{cache:'no-store'});
-  return r.ok? r.json(): {mode:'—', updated_at:'—'};
-}
-function pill(s){return '<span class="pill">'+s+'</span>';}
-function render(d){
-  document.getElementById('updated').textContent = d.updated_at||'—';
-  document.getElementById('mode').textContent = d.mode||'—';
-  const p=d.predictions||{};
-  document.getElementById('pred-date').textContent = p.date||'—';
-  const px=p.xsmb||{};
-  document.getElementById('best-lo').textContent = px.best||'—';
-  document.getElementById('best-lo-conf').textContent = (px.conf??'—');
-  const x=px.xien||[['—','—'],['—','—']];
-  document.getElementById('x1').textContent = x[0].join(' - ');
-  document.getElementById('x2').textContent = x[1].join(' - ');
-  document.getElementById('xsmb-top').innerHTML = (px.top10||[]).map(pill).join(' ');
-  document.getElementById('xsmb-notes').textContent = px.notes||'';
-  document.getElementById('mega-date').textContent = (p.mega?.date)||'—';
-  document.getElementById('mega-picks').innerHTML = (p.mega?.sets||[]).map(s=>'<tr><td>Frozen</td><td>'+pill(s.join(' '))+'</td></tr>').join('');
-  document.getElementById('power-date').textContent = (p.power?.date)||'—';
-  document.getElementById('power-picks').innerHTML = (p.power?.sets||[]).map(s=>'<tr><td>Frozen</td><td>'+pill(s.join(' '))+'</td></tr>').join('');
-  document.getElementById('max3d-date').textContent = (p.max3d?.date)||'—';
-  document.getElementById('max3d-picks').innerHTML = (p.max3d?.sets||[]).map(s=>'<tr><td>Frozen</td><td>'+pill(s)+'</td></tr>').join('');
-  document.getElementById('l535-picks').innerHTML =
-    (p.l535?.sets13?.length? '<tr><td>13:00</td><td>'+ (p.l535.sets13||[]).map(arr=>pill(arr.slice(0,5).join(' ')+' • SB '+arr[5])).join(' ') +'</td></tr>' : '') +
-    (p.l535?.sets21?.length? '<tr><td>21:00</td><td>'+ (p.l535.sets21||[]).map(arr=>pill(arr.slice(0,5).join(' ')+' • SB '+arr[5])).join(' ') +'</td></tr>' : '');
-  const o=d.outcomes||{};
-  document.getElementById('xsmb-out').textContent = (o.xsmb?.twos||[]).join(' ')||'—';
-  document.getElementById('xsmb-src').textContent = o.xsmb?.source||'—';
-  document.getElementById('mega-out').textContent = (o.mega?.nums||[]).join(' ')||'—';
-  document.getElementById('mega-src').textContent = o.mega?.source||'—';
-  document.getElementById('power-out').textContent = (o.power?.nums||[]).join(' ')||'—';
-  document.getElementById('power-src').textContent = o.power?.source||'—';
-  document.getElementById('max3d-out').textContent = (o.max3d?.latest||[]).join(' ')||'—';
-  document.getElementById('max3d-src').textContent = o.max3d?.source||'—';
-  document.getElementById('l535-13').textContent = (o.l535?.k13||'—');
-  document.getElementById('l535-21').textContent = (o.l535?.k21||'—');
-  document.getElementById('l535-src').textContent = o.l535?.source||'—';
-  document.getElementById('status').textContent = 'OK';
-}
-document.getElementById('refresh').onclick = async ()=>{ document.getElementById('status').textContent='Đang nạp…'; const d=await loadJSON(); render(d); };
-(async ()=>{ const d=await loadJSON(); render(d); })();
+  // Năm hiện tại
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Song ngữ
+  const dict={
+    vi:{title:"Hướng dẫn mở tài khoản Binance – an toàn & trung lập",
+        sub:"Trang hướng dẫn cho người mới bắt đầu. Không hứa hẹn lợi nhuận. Giao dịch tài sản số có rủi ro – hãy tự nghiên cứu (DYOR) và chỉ sử dụng số vốn có thể chấp nhận mất.",
+        b1:"Educational / Neutral",b2:"No earnings promises",b3:"VI / EN",
+        cta_go:"Mở Binance (Chính thức)",cta_copy:"Sao chép link",
+        c1:"Bật 2FA (Authenticator/SMS) sau khi tạo tài khoản",c2:"Hoàn tất KYC để tăng hạn mức & bảo mật",
+        h1:"3 bước nhanh",s1:"Nhấn nút vàng → vào trang chính thức Binance.",s2:"Đăng ký bằng email/điện thoại → bật bảo mật 2FA.",s3:"Xác minh danh tính (KYC) → nạp/rút và sử dụng sản phẩm phù hợp (Spot, Earn, v.v.).",
+        h2:"Lưu ý an toàn",t1:"Không chia sẻ mã 2FA hoặc mật khẩu cho bất kỳ ai.",t2:"Luôn kiểm tra URL thuộc tên miền binance.com trước khi đăng nhập.",t3:"Tránh hứa hẹn lợi nhuận – thị trường biến động mạnh.",
+        risk:"Cảnh báo rủi ro: Tài sản số có biến động cao và có thể mất toàn bộ vốn. Bạn tự chịu trách nhiệm với các quyết định của mình.",
+        h4:"Câu hỏi thường gặp",
+        q1:"Tôi có cần phí để mở tài khoản không?", a1:"Không. Mở tài khoản là miễn phí. Phí chỉ phát sinh khi bạn sử dụng dịch vụ (ví dụ: giao dịch).",
+        q2:"Tôi có thể nạp rút bằng tiền pháp định?", a2:"Tùy khu vực và đối tác thanh toán của Binance. Hãy kiểm tra tùy chọn trong ứng dụng/tài khoản của bạn.",
+        q3:"Trang này có thuộc Binance không?", a3:"Không. Đây là trang hướng dẫn độc lập, trung lập. Thương hiệu thuộc về Binance và chủ sở hữu.",
+        h3:"Liên hệ & pháp lý",name:"Người phụ trách:",addr:"Địa chỉ:",phone:"Điện thoại:",
+        pp:"Privacy Policy",ppc:"Chúng tôi không thu thập thanh toán trên trang này. Dữ liệu trình duyệt (như địa chỉ IP, user-agent) có thể được máy chủ/hosting ghi log theo mặc định để bảo mật. Khi bạn rời trang để truy cập Binance, mọi dữ liệu/đơn hàng tuân theo chính sách của Binance.",
+        tc:"Terms",tcc:"Trang này cung cấp nội dung hướng dẫn trung lập “as-is”, không đảm bảo kết quả, không phải lời khuyên tài chính/pháp lý/thuế. Bạn tự chịu trách nhiệm khi quyết định sử dụng nền tảng bên thứ ba (Binance).",
+        foot:"Neutral onboarding page. Not financial advice. Trademarks belong to Binance and respective owners."},
+    en:{title:"Binance account setup guide – safe & neutral",
+        sub:"Neutral how-to page for beginners. No earnings promises. Crypto trading is risky — do your own research and only use funds you can afford to lose.",
+        b1:"Educational / Neutral",b2:"No earnings promises",b3:"VI / EN",
+        cta_go:"Open Binance (Official)",cta_copy:"Copy link",
+        c1:"Enable 2FA (Authenticator/SMS) after signup",c2:"Complete KYC for higher limits & security",
+        h1:"Quick guide (3 steps)",s1:"Tap the gold button → visit Binance official site.",s2:"Register with email/phone → enable 2FA.",s3:"Complete KYC → deposit/withdraw and use suitable products (Spot, Earn, etc.).",
+        h2:"Safety tips",t1:"Never share 2FA codes or passwords.",t2:"Always verify the domain is binance.com before logging in.",t3:"Avoid profit promises — markets are volatile.",
+        risk:"Risk warning: Digital assets are highly volatile and you may lose all capital. You are responsible for your decisions.",
+        h4:"FAQ",
+        q1:"Do I pay any fee to open an account?", a1:"No. Opening an account is free. Fees apply only when you use services (e.g., trading).",
+        q2:"Can I deposit/withdraw fiat?", a2:"Depends on your region and Binance payment partners. Check available options in your account/app.",
+        q3:"Is this page owned by Binance?", a3:"No. This is an independent, neutral guide. Trademarks belong to Binance and their owners.",
+        h3:"Contact & legal",name:"Contact:",addr:"Address:",phone:"Phone:",
+        pp:"Privacy Policy",ppc:"We do not collect payments on this page. Basic browser data (IP, user-agent) may be logged by the host for security. Once you proceed to Binance, all data/orders follow Binance policies.",
+        tc:"Terms",tcc:"This page provides neutral guidance “as-is”, no guarantees and not financial/tax/legal advice. You are responsible for using third-party platforms (Binance).",
+        foot:"Neutral onboarding page. Not financial advice. Trademarks belong to Binance and respective owners."}
+  };
+
+  const $=s=>document.querySelector(s);
+  let cur='vi';
+  function applyLang(){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k=el.getAttribute('data-i18n'); if(dict[cur][k]) el.innerHTML=dict[cur][k];
+    });
+    $('#viBtn').classList.toggle('active',cur==='vi');
+    $('#enBtn').classList.toggle('active',cur==='en');
+    document.documentElement.lang = cur;
+  }
+  $('#viBtn').onclick=()=>{cur='vi';applyLang();};
+  $('#enBtn').onclick=()=>{cur='en';applyLang();};
+  applyLang();
+
+  // Copy referral link
+  $('#copyBtn').onclick=()=>{
+    const link='https://accounts.binance.com/register?ref=59226778';
+    navigator.clipboard.writeText(link).then(()=>{
+      const old=$('#copyBtn').textContent;
+      $('#copyBtn').textContent=(cur==='vi'?'Đã sao chép ✓':'Copied ✓');
+      setTimeout(()=>$('#copyBtn').textContent=(cur==='vi'?dict.vi.cta_copy:dict.en.cta_copy),1100);
+    }).catch(()=>alert(cur==='vi'?'Copy lỗi, thử lại.':'Copy failed, please try again.'));
+  };
 </script>
 </body>
 </html>
